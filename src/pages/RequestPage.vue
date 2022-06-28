@@ -1,14 +1,16 @@
 <template>
-  <router-view/>
+<div>
+    запрос
+</div>
+  
 </template>
 
 <script>
-
 export default {
-  name: 'App',
-  components: {}
+
 }
 </script>
 
 <style>
+
 </style>
