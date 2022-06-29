@@ -1,10 +1,9 @@
 <template>
   <div class="container">
+    <h1>Оставьте заявку</h1>
     <div class="request_container">
       <div class="request_form_container">
-         <h1>Оставьте заявку</h1>
         <div class="request_form"  action="">
-         
           <select v-model="sity" class="form_item" plaseholder="ijli">
             <option value="moskov">Москва</option>
             <option value="peter">Санкт-Пtтербург</option>
@@ -24,11 +23,20 @@
             <input v-model="personalDataCheked" id="personal_data_checkbox" class="custom_checkbox" type="checkbox" name="first"  />
             <label for="personal_data_checkbox">Даю согласие на обработку своих персональных данных</label>
           </div>
+          <button class="btn" > Смотреть сериал</button>
     
         </div>
       </div>
       <div class="contact_info_container">
-        <h3>hi</h3>
+        <h4>Наша горячая линия</h4>
+        <h2>8 800 38 23 112</h2>
+
+        <h4>Главный офис</h4>
+        <h2>г. Москва, Садовническая ул., 80</h2>
+
+        <h4>Часы работы</h4>
+        <h2>Пн-Пт с 10:00 до 22:00</h2>
+
       </div>
 
     </div>
@@ -57,6 +65,7 @@ export default {
 <style>
 .request_container{
   display: flex;
+  margin-bottom: 88px;
 }
 
 .request_form_container{
@@ -139,6 +148,28 @@ input[type='file'] {
 .file_input_wrapper{
   background: rgba(255, 255, 255, 0.15);
 
+}
+
+
+.contact_info_container h4{
+  font-family: 'Futura PT';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: #FFFFFF;
+  opacity: 0.6;
+  margin: 0;
+}
+
+.contact_info_container h2{
+  font-family: 'Futura PT';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 48px;
+  color: #FFFFFF;
+  margin: 8px 0 32px 0;
 }
 
 
