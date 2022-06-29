@@ -15,7 +15,7 @@
             <input type="mail" class="form_item mail_input" placeholder="Email">
             <!-- <input type="text" class="form_item tel_input" placeholder="+7 (___)-___-__-__" pattern="[+][7]-[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}"> -->
             <!-- <input type="text" class="form_item tel_input" data-tel-input placeholder="Телефон" maxlength="18"> -->
-            
+            <input class="form_item" v-maska="['+7 (###) ##-##-##', '+7 (###) ###-##-##']" placeholder="+7 (___)-___-__-__">
           </div>
 
         </div>
@@ -83,6 +83,8 @@ export default {
   border: none;
   padding:16px 20px;
 }
+
+
 
 
 </style>
