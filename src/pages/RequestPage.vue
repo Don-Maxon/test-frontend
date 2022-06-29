@@ -15,9 +15,9 @@
             <input type="mail" class="form_item mail_input" placeholder="Email">
             <!-- <input type="text" class="form_item tel_input" placeholder="+7 (___)-___-__-__" pattern="[+][7]-[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}"> -->
             <!-- <input type="text" class="form_item tel_input" data-tel-input placeholder="Телефон" maxlength="18"> -->
-            <input type="tel" data-tel-input placeholder="Телефон" maxlength="18" />
             
           </div>
+
         </div>
       </div>
       <div class="contact_info_container">
@@ -30,7 +30,6 @@
 </template>
 
 <script>
-import "../scripts/phoneinput.js"
 export default {
 
 }
