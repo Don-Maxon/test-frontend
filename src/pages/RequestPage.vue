@@ -5,19 +5,26 @@
          <h1>Оставьте заявку</h1>
         <div class="request_form"  action="">
          
-          <select class="form_item" placeholder="Выберете город">
+          <select v-model="sity" class="form_item" plaseholder="ijli">
             <option value="moskov">Москва</option>
             <option value="peter">Санкт-Пtтербург</option>
             <option value="kazan">Казань</option>
           </select>
-          <input type="name" class="form_item" placeholder="Имя">
+          <input v-model="name" type="name" class="form_item" placeholder="Имя">
           <div class="mail_namber_container">
-            <input type="mail" class="form_item mail_input" placeholder="Email">
-            <!-- <input type="text" class="form_item tel_input" placeholder="+7 (___)-___-__-__" pattern="[+][7]-[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}"> -->
-            <!-- <input type="text" class="form_item tel_input" data-tel-input placeholder="Телефон" maxlength="18"> -->
-            <input class="form_item" v-maska="['+7 (###) ##-##-##', '+7 (###) ###-##-##']" placeholder="+7 (___)-___-__-__">
+            <input v-model="mail" type="mail" class="form_item mail_input" placeholder="Email">
+            <input v-model="phone" class="form_item" v-maska="['+7 (###) ##-##-##', '+7 (###) ###-##-##']" placeholder="+7 (___)-___-__-__">
           </div>
+          <textarea v-model="comment" class="form_item" placeholder="Оставьте пометку к заказу"></textarea>
+          <div class="file_input_wrapper">
+            <input  type="file" class="form_item hidden"> 
 
+          </div>
+          <div class="custom_checkbox_container">
+            <input v-model="personalDataCheked" id="personal_data_checkbox" class="custom_checkbox" type="checkbox" name="first"  />
+            <label for="personal_data_checkbox">Даю согласие на обработку своих персональных данных</label>
+          </div>
+    
         </div>
       </div>
       <div class="contact_info_container">
@@ -31,6 +38,18 @@
 
 <script>
 export default {
+  data(){
+    return {
+      sity: "",
+      name: "",
+      mail: "",
+      phone: "",
+      comment: "",
+      file: "",
+      personalDataCheked: false,
+
+    }
+  }
 
 }
 </script>
@@ -55,6 +74,25 @@ export default {
   width: 50%;
 }
 
+.form_item{
+  background: rgba(255, 255, 255, 0.1);
+  font-family: 'Futura PT';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #FFF;
+  box-shadow: none;
+  outline:none;
+  border: none;
+  padding:16px 20px;
+}
+
+select option{
+  color: #000;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
 .mail_namber_container{
   display: flex;
   flex-direction: row;
@@ -70,21 +108,38 @@ export default {
 
 }
 
-.form_item{
-  background: rgba(255, 255, 255, 0.1);
+textarea{
+  height: 156px;
+  resize: none;
+}
+
+.custom_checkbox{
+  box-sizing: border-box;
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.custom_checkbox_container{
+  display: flex;
+  align-items: center;
+  gap: 20px;
   font-family: 'Futura PT';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #FFF;
-  box-shadow: none;
-  outline:none;
-  border: none;
-  padding:16px 20px;
 }
 
+input[type='file'] {
+  opacity: 0; 
+}
 
+.file_input_wrapper{
+  background: rgba(255, 255, 255, 0.15);
+
+}
 
 
 </style>
