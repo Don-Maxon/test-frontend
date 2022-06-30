@@ -4,26 +4,51 @@
     <div class="request_container">
       <div class="request_form_container">
         <div class="request_form"  action="">
-          <select v-model="sity" class="form_item" plaseholder="ijli">
+          <select v-model="sity" class="form_item" plaseholder="ijli" :class="{'invalid': v$.sity.$error}">
             <option value="moskov">Москва</option>
-            <option value="peter">Санкт-Пtтербург</option>
+            <option value="peter">Санкт-Петербург</option>
             <option value="kazan">Казань</option>
           </select>
-          <input v-model="name" type="name" class="form_item" placeholder="Имя">
+          <div class="invalid_label_wrapper">
+            <label for="" class="invalid_label" v-show="v$.sity.$error">Поле не заполненно</label>
+          </div>
+          <input v-model="name" type="name" class="form_item" placeholder="Имя" :class="{'invalid': v$.name.$error}">
+          <div class="invalid_label_wrapper">
+            <label for="" class="invalid_label" v-show="v$.name.$error">Поле не заполненно</label>
+          </div>
           <div class="mail_namber_container">
-            <input v-model="mail" type="mail" class="form_item mail_input" placeholder="Email">
-            <input v-model="phone" class="form_item" v-maska="['+7 (###) ##-##-##', '+7 (###) ###-##-##']" placeholder="+7 (___)-___-__-__">
+            <div class="mail_input_wrapper">
+                <input v-model="mail" type="mail" class="form_item mail_input" placeholder="Email" :class="{'invalid': v$.mail.$error}">
+              <!-- <div class="invalid_label_wrapper">
+                <label for="" class="invalid_label" v-show="v$.mail.$error">Поле не заполненно</label>
+              </div> -->
+            </div>
+            <div class="tel_input_wrapper">
+              <input v-model="phone" class="form_item tel_input" v-maska="['+7 (###) ##-##-##', '+7 (###) ###-##-##']" placeholder="+7 (___)-___-__-__" :class="{'invalid': v$.phone.$error}">
+              <!-- <div class="invalid_label_wrapper">
+                <label for="" class="invalid_label" v-show="v$.phone.$error">Поле не заполненно</label>
+              </div> -->
+            </div>
+            
           </div>
-          <textarea v-model="comment" class="form_item" placeholder="Оставьте пометку к заказу"></textarea>
+          <textarea v-model="comment" class="form_item" placeholder="Оставьте пометку к заказу" :class="{'invalid': v$.comment.$error}"></textarea>
+          <div class="invalid_label_wrapper">
+            <label for="" class="invalid_label" v-show="v$.comment.$error">Поле не заполненно</label>
+          </div>
           <div class="file_input_wrapper">
-            <input  type="file" class="form_item hidden"> 
-
+            <input  type="file" class="form_item "> 
           </div>
-          <div class="custom_checkbox_container">
-            <input v-model="personalDataCheked" id="personal_data_checkbox" class="custom_checkbox" type="checkbox" name="first"  />
+          <div class="invalid_label_wrapper">
+            <label for="" class="invalid_label" v-show="v$.personalDataCheked.$error">Поле не заполненно</label>
+          </div>
+          <div class="custom_checkbox_container ">
+            <input v-model="personalDataCheked"  id="personal_data_checkbox" class="custom_checkbox" :class="{'invalid': v$.personalDataCheked.$error}" type="checkbox" name="first"  />
             <label for="personal_data_checkbox">Даю согласие на обработку своих персональных данных</label>
           </div>
-          <button class="btn" > Смотреть сериал</button>
+          <div class="invalid_label_wrapper">
+            <label for="" class="invalid_label" v-show="v$.personalDataCheked.$error">Поле не заполненно</label>
+          </div>
+          <button class="btn" @click="submitForm"> Смотреть сериал</button>
     
         </div>
       </div>
@@ -42,10 +67,18 @@
     </div>
     
   </div>
+  <div class="test container">
+
+  </div>
 </template>
 
 <script>
+import useVuelidate from '@vuelidate/core'
+import { required, email, minLength } from '@vuelidate/validators'
 export default {
+  setup(){
+       return { v$: useVuelidate() }
+  },
   data(){
     return {
       sity: "",
@@ -53,12 +86,32 @@ export default {
       mail: "",
       phone: "",
       comment: "",
-      file: "",
+      file: null,
       personalDataCheked: false,
-
     }
+  },
+  validations(){
+    return {
+      sity: {required},
+      name: {required },
+      mail: {required, email},
+      phone: {required, minLength: minLength(18)},
+      comment: {required},
+      personalDataCheked: {checked: value => value === true}
+    }
+  },
+  methods:{
+    submitForm() {
+      this.v$.$validate();
+      console.log(this.v$.name.$error);
+      console.log(this.phone.length);
+      if (!this.v$.$error) {
+        console.log('Валидно')
+      } else {
+        console.log('НЕ валидно')
+      }
+    },
   }
-
 }
 </script>
 
@@ -76,7 +129,7 @@ export default {
   display: flex;
   flex-direction: column;
   padding-right: 126px;
-  gap: 30px;
+  /* gap: 30px; */
 }
 
 .contact_info_container{
@@ -94,7 +147,7 @@ export default {
   box-shadow: none;
   outline:none;
   border: none;
-  padding:16px 20px;
+  padding: 16px 20px;
 }
 
 select option{
@@ -104,16 +157,28 @@ select option{
 
 .mail_namber_container{
   display: flex;
-  flex-direction: row;
-  gap: 24px;
+ 
+  /* gap: 24px;  */
+  
+}
+
+.mail_input_wrapper{
+  display: flex;
+
+  flex-direction: column;
 }
 
 .mail_input{
-  flex-grow: 1;
+
+}
+
+.tel_input_wrapper{
+  display: flex;
+;
+  flex-direction: column;
 }
 
 .tel_input{
-  flex-grow: 1;
 
 }
 
@@ -141,15 +206,15 @@ textarea{
   line-height: 24px;
 }
 
-input[type='file'] {
-  opacity: 0; 
-}
-
 .file_input_wrapper{
-  background: rgba(255, 255, 255, 0.15);
 
+  display: flex;
 }
 
+input[type='file'] {
+  /* opacity: 0;  */
+  flex: 1;
+}
 
 .contact_info_container h4{
   font-family: 'Futura PT';
@@ -172,5 +237,22 @@ input[type='file'] {
   margin: 8px 0 32px 0;
 }
 
+.invalid{
+  background: rgba(236, 63, 63, 0.2);
+}
+
+.invalid_label{
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #FF5858;
+  opacity: 0.8;
+}
+
+.invalid_label_wrapper{
+  height: 20px;
+  margin-bottom: 12px;
+}
 
 </style>
