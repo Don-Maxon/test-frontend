@@ -8,7 +8,8 @@
       </div>
     </div>
   </header>
-  <router-view class="main-content"/>  
+  <div class="main_content"><router-view />  </div>
+  
   <footer>
     <div class="container">
       <div class="footer-container">
@@ -68,7 +69,7 @@ header{
     justify-content: space-between;
 }
 
-.main-content{
+.main_content{
   flex: 1 0 auto;
 }
 
@@ -164,4 +165,3 @@ a{
 
 
 </style>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/boots..">

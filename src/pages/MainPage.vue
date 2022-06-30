@@ -31,7 +31,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style >
 .img_main_container{
   overflow: hidden;
 }
