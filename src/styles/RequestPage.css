@@ -1,0 +1,164 @@
+.disabled_btn{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        padding: 16px 32px;
+        gap: 10px;
+        width: 224px;
+        height: 48px;
+        background: #EC3F3F;
+        border: 1px solid #EC3F3F;
+        color: #FFFFFF;
+        font-family: 'Futura PT';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+}
+
+.spinner {
+        height: 20px;
+        width: 20px;
+        border-left: 3px solid #FFFFFF;
+        border-bottom: 3px solid #FFFFFF;
+        border-right: 3px solid #FFFFFF;
+        border-top: 3px solid transparent;
+        border-radius: 50%;
+        animation: spinner 1s linear infinite;
+}
+
+@keyframes spinner {
+        from {
+        transform: rotate(0deg);
+        }
+
+        to {
+        transform: rotate(360deg);
+        }
+}
+
+.request_container{
+        display: flex;
+        margin-bottom: 88px;
+}
+
+.request_form_container{
+        width: 50%;     
+}
+
+.request_form{
+        display: flex;
+        flex-direction: column;
+        padding-right: 126px;
+}
+
+.contact_info_container{
+        width: 50%;
+}
+
+.form_item{
+        background: rgba(255, 255, 255, 0.1);
+        font-family: 'Futura PT';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        color: #FFF;
+        box-shadow: none;
+        outline:none;
+        border: none;
+        padding: 16px 20px;
+}
+
+select option{
+        color: #000;
+        background-color: rgba(255, 255, 255, 0.1);
+}
+
+.mail_namber_container{
+        display: flex;
+        gap: 24px;  
+}
+
+.mail_input_wrapper{
+        display: flex;
+        flex-direction: column;
+}
+
+.tel_input_wrapper{
+        display: flex;
+        flex-direction: column;
+}
+
+textarea{
+        height: 156px;
+        resize: none;
+}
+
+.custom_checkbox{
+        box-sizing: border-box;
+        width: 32px;
+        height: 32px;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.custom_checkbox_container{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        font-family: 'Futura PT';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+}
+
+.file_input_wrapper{
+        display: flex;
+}
+
+input[type='file'] {
+        flex: 1;
+}
+
+.contact_info_container h4{
+        font-family: 'Futura PT';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 20px;
+        color: #FFFFFF;
+        opacity: 0.6;
+        margin: 0;
+}
+
+.contact_info_container h2{
+        font-family: 'Futura PT';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 40px;
+        line-height: 48px;
+        color: #FFFFFF;
+        margin: 8px 0 32px 0;
+}
+
+.invalid{
+        background: rgba(236, 63, 63, 0.2);
+}
+
+.invalid_label{
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 16px;
+        color: #FF5858;
+        opacity: 0.8;
+}
+
+.invalid_label_wrapper{
+        height: 20px;
+        margin-bottom: 12px;
+}
+      

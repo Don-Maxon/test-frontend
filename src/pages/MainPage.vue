@@ -29,32 +29,4 @@ export default {
 }
 </script>
 
-<style >
-.img_main_container{
-  overflow: hidden;
-}
-
-.test_img{
-  background-image: url('../assets/images/main_banner_large.png');
-  max-height: 440px;
-  min-height: 360px;
-  float: right;
-  position: relative;
-}
-
-.main_text_container{
-  position: absolute;
-}
-
-.main_text_container h1{
-  font-family: 'Futura PT';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 56px;
-  line-height: 56px;
-  margin-top: 104px;
-}
-
-
-
-</style>
+<style scoped src="../styles/MainPageStyle.css"></style>
