@@ -42,7 +42,9 @@
           <div class="invalid_label_wrapper">
             <label for="" class="invalid_label" v-show="v$.personalDataCheked.$error">Поле не заполненно</label>
           </div>
-          <button class="btn" @click="submitForm"> Смотреть сериал</button>
+          <button class="btn" @click="submitForm" v-if="!dispatchIsActive"> Отправить заявку </button>
+          <button class="disabled_btn" @click="submitForm" disabled v-else> Обработка данных <div> <div class="spinner"></div></div> </button>  
+          
     
         </div>
       </div>
@@ -61,7 +63,6 @@
     </div>
     
   </div>
-
 </template>
 
 <script>
@@ -80,6 +81,7 @@ export default {
       comment: "",
       file: null,
       personalDataCheked: false,
+      dispatchIsActive: false
     }
   },
   validations(){
@@ -97,12 +99,9 @@ export default {
   methods:{
     submitForm() {
       this.v$.$validate();
-      console.log(this.v$.name.$error);
-      console.log(this.phone.length);
       if (!this.v$.$error) {
-        console.log('Валидно')
-      } else {
-        console.log('НЕ валидно')
+        this.dispatchIsActive = true;
+        setTimeout(()=>this.$router.push({name: 'SuccessfulRequest'}), 1500);
       }
     },
     previewFiles() {
@@ -113,7 +112,47 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.disabled_btn{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 16px 32px;
+  gap: 10px;
+  width: 224px;
+  height: 48px;
+  background: #EC3F3F;
+  border: 1px solid #EC3F3F;
+  color: #FFFFFF;
+  font-family: 'Futura PT';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.spinner {
+    height: 20px;
+    width: 20px;
+    border-left: 3px solid #FFFFFF;
+    border-bottom: 3px solid #FFFFFF;
+    border-right: 3px solid #FFFFFF;
+    border-top: 3px solid transparent;
+    border-radius: 50%;
+    animation: spinner 1s linear infinite;
+}
+ 
+@keyframes spinner {
+    from {
+        transform: rotate(0deg);
+    }
+ 
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 .request_container{
   display: flex;
   margin-bottom: 88px;
@@ -127,7 +166,7 @@ export default {
   display: flex;
   flex-direction: column;
   padding-right: 126px;
-  /* gap: 30px; */
+
 }
 
 .contact_info_container{
@@ -165,18 +204,10 @@ select option{
   flex-direction: column;
 }
 
-.mail_input{
-
-}
-
 .tel_input_wrapper{
   display: flex;
 ;
   flex-direction: column;
-}
-
-.tel_input{
-
 }
 
 textarea{

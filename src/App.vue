@@ -4,7 +4,7 @@
     <div class="container">
       <div class="header-container">
         <img src="./assets/images/witcher_logo.png" alt="" style="cursor: pointer" @click="this.$router.push({name: 'MainPage'})">
-        <button class="outline-btn" @click="this.$router.push({name: 'RequestPage'})">Подключить подписку</button>
+        <button class="outline-btn" @click="this.$router.push({name: 'RequestPage'})" v-if="this.$route.name == 'MainPage'">Подключить подписку</button>
       </div>
     </div>
   </header>
@@ -109,6 +109,9 @@ footer{
   font-size: 16px;
   line-height: 24px;
 }
+.outline-btn:hover{
+  background-color: #FF1E1E;
+}
 
 .btn{
   display: flex;
@@ -130,7 +133,7 @@ footer{
   line-height: 24px;
 }
 
-button:hover{
+.btn:hover{
   background-color: #FF1E1E;
 }
 

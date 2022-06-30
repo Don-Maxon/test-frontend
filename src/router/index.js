@@ -11,6 +11,11 @@ const routes = [
         path: '/Request',
         name: 'RequestPage',
         component: () => import('../pages/RequestPage.vue')
+    },
+    {
+        path: '/SuccessfulRequest',
+        name: 'SuccessfulRequest',
+        component: () => import('../pages/SuccessfulRequestPage.vue')
     }
 ]
 

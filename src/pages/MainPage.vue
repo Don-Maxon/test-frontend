@@ -20,8 +20,6 @@
     <div class="container">
       <h2>Кадры со съемок</h2>
     </div>
-    
-    <div>ascsv</div>
   </div>
 </template>
 
