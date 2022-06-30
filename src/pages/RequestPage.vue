@@ -17,19 +17,13 @@
             <label for="" class="invalid_label" v-show="v$.name.$error">Поле не заполненно</label>
           </div>
           <div class="mail_namber_container">
-            <div class="mail_input_wrapper">
-                <input v-model="mail" type="mail" class="form_item mail_input" placeholder="Email" :class="{'invalid': v$.mail.$error}">
-              <!-- <div class="invalid_label_wrapper">
-                <label for="" class="invalid_label" v-show="v$.mail.$error">Поле не заполненно</label>
-              </div> -->
-            </div>
-            <div class="tel_input_wrapper">
-              <input v-model="phone" class="form_item tel_input" v-maska="['+7 (###) ##-##-##', '+7 (###) ###-##-##']" placeholder="+7 (___)-___-__-__" :class="{'invalid': v$.phone.$error}">
-              <!-- <div class="invalid_label_wrapper">
-                <label for="" class="invalid_label" v-show="v$.phone.$error">Поле не заполненно</label>
-              </div> -->
-            </div>
-            
+              <input v-model="mail" style="width: 50%" type="mail" class="form_item " placeholder="Email" :class="{'invalid': v$.mail.$error}">
+              <input v-model="phone" style="width: 50%" type="tel" class="form_item " v-maska="['+7 (###) ##-##-##', '+7 (###) ###-##-##']" placeholder="+7 (___)-___-__-__" :class="{'invalid': v$.phone.$error}">
+          </div>
+
+          <div class="mail_namber_container invalid_label_wrapper">
+            <label for="" class="invalid_label" style="width: 50%" v-show="v$.phone.$error">Поле не заполненно</label>
+            <label for="" class="invalid_label" style="width: 50%" v-show="v$.mail.$error">Поле не заполненно</label>
           </div>
           <textarea v-model="comment" class="form_item" placeholder="Оставьте пометку к заказу" :class="{'invalid': v$.comment.$error}"></textarea>
           <div class="invalid_label_wrapper">
@@ -74,7 +68,7 @@
 
 <script>
 import useVuelidate from '@vuelidate/core'
-import { required, email, minLength } from '@vuelidate/validators'
+import { required, email, minLength, } from '@vuelidate/validators'
 export default {
   setup(){
        return { v$: useVuelidate() }
@@ -86,7 +80,7 @@ export default {
       mail: "",
       phone: "",
       comment: "",
-      file: null,
+      file: [],
       personalDataCheked: false,
     }
   },
@@ -97,7 +91,9 @@ export default {
       mail: {required, email},
       phone: {required, minLength: minLength(18)},
       comment: {required},
-      personalDataCheked: {checked: value => value === true}
+      personalDataCheked: {checked: value => value === true},
+  
+
     }
   },
   methods:{
@@ -157,8 +153,7 @@ select option{
 
 .mail_namber_container{
   display: flex;
- 
-  /* gap: 24px;  */
+  gap: 24px;  
   
 }
 
