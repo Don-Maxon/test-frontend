@@ -30,10 +30,10 @@
             <label for="" class="invalid_label" v-show="v$.comment.$error">Поле не заполненно</label>
           </div>
           <div class="file_input_wrapper">
-            <input  type="file" class="form_item "> 
+            <input  type="file" class="form_item " id="file" ref="myFiles" @change="previewFiles" :class="{'invalid': v$.file.$error}"> 
           </div>
           <div class="invalid_label_wrapper">
-            <label for="" class="invalid_label" v-show="v$.personalDataCheked.$error">Поле не заполненно</label>
+            <label for="" class="invalid_label" v-show="v$.file.$error">Поле не заполненно</label>
           </div>
           <div class="custom_checkbox_container ">
             <input v-model="personalDataCheked"  id="personal_data_checkbox" class="custom_checkbox" :class="{'invalid': v$.personalDataCheked.$error}" type="checkbox" name="first"  />
@@ -61,14 +61,12 @@
     </div>
     
   </div>
-  <div class="test container">
 
-  </div>
 </template>
 
 <script>
 import useVuelidate from '@vuelidate/core'
-import { required, email, minLength, } from '@vuelidate/validators'
+import { required, email, minLength} from '@vuelidate/validators'
 export default {
   setup(){
        return { v$: useVuelidate() }
@@ -80,7 +78,7 @@ export default {
       mail: "",
       phone: "",
       comment: "",
-      file: [],
+      file: null,
       personalDataCheked: false,
     }
   },
@@ -91,9 +89,9 @@ export default {
       mail: {required, email},
       phone: {required, minLength: minLength(18)},
       comment: {required},
-      personalDataCheked: {checked: value => value === true},
-  
-
+      personalDataCheked: {checked: value => value === true}, 
+      file: {required}
+      
     }
   },
   methods:{
@@ -107,6 +105,10 @@ export default {
         console.log('НЕ валидно')
       }
     },
+    previewFiles() {
+      this.file = this.$refs.myFiles.files[0];
+      
+  }
   }
 }
 </script>
